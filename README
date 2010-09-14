@@ -1,8 +1,6 @@
 Wordle-like clickable cloud of words in PHP.
 Inspired by http://www.wordle.net/
 
-WARNING: You have to adapt the $font variable to point to an existing TTF font on your server !
-
 
 Author: Daniel Barsotti / dan [at] dreamcraft [dot] ch
 
