@@ -9,7 +9,7 @@
 
 
 /**
- * A rectangle with collision detection 
+ * An axis-aligned rectangle with collision detection 
  */
 class Box {
 
