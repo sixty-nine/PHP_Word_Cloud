@@ -13,7 +13,7 @@
  */
 class Box {
 
-  private $left, $right, $top, $bottom;
+  public $left, $right, $top, $bottom;
   
   /**
    * Construct a new rectangle from a point and a bounding box
@@ -116,6 +116,27 @@ class Mask {
       $i += 1;
     }
     return array($x, $y);
+  }
+  
+  public function get_bounding_box($margin = 10) {
+    $left = null; $right = null; 
+    $top = null; $bottom = null;
+    foreach($this->drawn_boxes as $box) {
+      if (($left == NULL) || ($box->left < $left)) $left = $box->left;
+      if (($right == NULL) || ($box->right > $right)) $right = $box->right;
+      if (($top == NULL) || ($box->top > $top)) $top = $box->top;
+      if (($bottom == NULL) || ($box->bottom < $bottom)) $bottom = $box->bottom;
+    }
+    return array($left - $margin, $bottom - $margin, $right + $margin, $top + $margin);
+  }
+  
+  public function adjust($dx, $dy) {
+    foreach($this->drawn_boxes as $box) {
+      $box->left += $dx;
+      $box->right += $dx;
+      $box->top += $dy;
+      $box->bottom += $dy;
+    }
   }
 }
 
@@ -301,6 +322,16 @@ class WordCloud {
       $this->mask->add(new Box($cx, $cy, $val->box));
       $i++;
     }
+    
+    // Crop the image 
+    list($x1, $y1, $x2, $y2) = $this->mask->get_bounding_box();
+    $image2 = imagecreatetruecolor(abs($x2 - $x1), abs($y2 - $y1));
+    imagecopy($image2 ,$this->image, 0, 0, $x1, $y1, abs($x2 - $x1), abs($y2 - $y1));
+    imagedestroy($this->image);
+    $this->image = $image2;
+    
+    // Adjust the map to the cropped image
+    $this->mask->adjust(-$x1, -$y1);
   }
   
   public function get_image_map() {
