@@ -365,11 +365,7 @@ Aicom are the creators of interactive web based tools such as FormFish, MettingP
 oriented.net is a high-quality web hosting company based in Switzerland. Our partnership with them allows us to offer advanced hosting solutions to your web application.
 EOT;
 
-// /home/storage/backup/mercury/NT Server/music/FL Studio/Artwork/Fruity fonts.ttf
-// /var/lib/defoma/gs.d/dirs/fonts/DejaVuSans-Bold.ttf
-// /home/files/Ronda Bold.ttf
-// /usr/share/dolibarr/external-libs/Artichow/font/Tuffy.ttf
-$font = '/usr/share/dolibarr/external-libs/Artichow/font/Tuffy.ttf';
+$font = dirname(__FILE__).'/Arial.ttf';
 $width = 600;
 $height = 600;
 $cloud = new WordCloud($width, $height, $font, $full_text);
