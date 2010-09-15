@@ -13,6 +13,15 @@
  */
 class Palette {
 
+  private static $palettes = array(
+    'aqua' => array('BED661', '89E894', '78D5E3', '7AF5F5', '34DDDD', '93E2D5'),
+    'yellow/blue' => array('FFCC00', 'CCCCCC', '666699'),
+    'grey' => array('87907D', 'AAB6A2', '555555', '666666'), 
+    'brown' => array('CC6600', 'FFFBD0', 'FF9900', 'C13100'), 
+    'army' => array('595F23', '829F53', 'A2B964', '5F1E02', 'E15417', 'FCF141'),
+    'pastel' => array('EF597B', 'FF6D31', '73B66B', 'FFCB18', '29A2C6'),
+  );
+
   /**
    * Construct a random color palette
    * @param object $im The GD image
@@ -41,5 +50,16 @@ class Palette {
         hexdec(substr($hex, 4, 2)));
     }
     return $palette;
+  }
+  
+  public static function get_named_palette($im, $name) {
+    if (array_key_exists($name, self::$palettes)) {
+      return self::get_palette_from_hex($im, self::$palettes[$name]);
+    }
+    return self::get_named_palette($im, 'grey');
+  }
+  
+  public static function list_named_palettes() {
+    return array_keys(self::$palettes);
   }
 }
