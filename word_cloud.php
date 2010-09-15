@@ -22,7 +22,14 @@ class WordCloud {
     $this->font = $font;
 
     $this->mask = new Mask();
-    $this->table = new FrequencyTable($text, $font);
+    $this->table = new FrequencyTable($font, $text);
+    // $this->table = new FrequencyTable($font);//, $text);
+    // $this->table->add_word('word1');
+    // $this->table->add_word('word2', 2);
+    // $this->table->add_word('word3');
+    // $this->table->add_word('word4', 4);
+    // $this->table->add_word('word5');
+    // for($i = 6; $i <= 20; $i++) $this->table->add_word('word'.$i, $i % 5);
     $this->image = imagecreatetruecolor($width, $height);
   }
 
