@@ -16,13 +16,13 @@ class WordCloud {
   private $table;
   private $image;
 
-  public function __construct($width, $height, $font, $text) {
+  public function __construct($width, $height, $font, $text, $vertical_freq = FrequencyTable::WORDS_MAINLY_HORIZONTAL) {
     $this->width = $width;
     $this->height = $height;
     $this->font = $font;
 
     $this->mask = new Mask();
-    $this->table = new FrequencyTable($font, $text);
+    $this->table = new FrequencyTable($font, $text, $vertical_freq);
     // $this->table = new FrequencyTable($font);//, $text);
     // $this->table->add_word('word1');
     // $this->table->add_word('word2', 2);
