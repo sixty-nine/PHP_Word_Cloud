@@ -37,7 +37,7 @@ class FrequencyTable {
 
     $this->font = $font;
     $this->vertical_freq = $vertical_freq;
-    $words = split("[\n\r\t ]+", $text);
+    $words = preg_split("/[\n\r\t ]+/", $text);
     $this->create_frequency_table($words);
     $this->process_frequency_table();
   }

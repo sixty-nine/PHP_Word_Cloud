@@ -52,7 +52,7 @@ class WordCloud {
       }
 
       // Search the place for the next word
-      list($cx, $cy) = $this->mask->search_place($im, $cx, $cy, $val->box);
+      list($cx, $cy) = $this->mask->search_place($this->image, $cx, $cy, $val->box);
 
       // Draw the word
       imagettftext($this->image, $val->size, $val->angle, $cx, $cy, $palette[$i % count($palette)], $this->font, $key);
