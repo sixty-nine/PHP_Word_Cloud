@@ -39,6 +39,8 @@ class WordCloud {
 
   public function render($palette) {
     $i = 0;
+    $positions = array();
+    
     foreach($this->table->get_table() as $key => $val) {
 
       // Set the center so that vertical words are better distributed
@@ -55,6 +57,14 @@ class WordCloud {
       list($cx, $cy) = $this->mask->search_place($this->image, $cx, $cy, $val->box);
 
       // Draw the word
+      $res['words'][$key] = array(
+        'x' => $cx,
+        'y' => $cy,
+        'angle' => $val->angle,
+        'size' => $val->size,
+        'color' => $palette[$i % count($palette)],
+        'box' => $boxes[$key],
+      );
       imagettftext($this->image, $val->size, $val->angle, $cx, $cy, $palette[$i % count($palette)], $this->font, $key);
       $this->mask->add(new Box($cx, $cy, $val->box));
       $i++;
@@ -69,6 +79,13 @@ class WordCloud {
 
     // Adjust the map to the cropped image
     $this->mask->adjust(-$x1, -$y1);
+
+    foreach($boxes = $this->get_image_map() as $map) {
+      $res['words'][$map[0]]['box'] = $map[1];
+    }
+
+    $res['adjust'] = array('dx' => -$x1, 'dy' => -$y1);
+    return $res;
   }
 
   public function get_image_map() {
