@@ -23,6 +23,8 @@ class WordCloud {
 
     $this->mask = new Mask();
     $this->table = new FrequencyTable($font, $text, $vertical_freq);
+    $this->table->setMinFontSize(10);
+    $this->table->setMaxFontSize(72);
     // $this->table = new FrequencyTable($font);//, $text);
     // $this->table->add_word('word1');
     // $this->table->add_word('word2', 2);

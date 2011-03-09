@@ -26,6 +26,8 @@ class FrequencyTable {
   private $font;
   private $vertical_freq = FrequencyTable::WORDS_MAINLY_HORIZONTAL;
   private $total_occurences = 0;
+  private $min_font_size = 10;
+  private $max_font_size = 60;
 
   /**
    * Construct a new FrequencyTable from a word list and a font
@@ -42,7 +44,16 @@ class FrequencyTable {
     $this->process_frequency_table();
   }
 
-  
+  public function setMinFontSize($val) {
+
+      $this->min_font_size = $val;
+  }
+
+  public function setMaxFontSize($val) {
+
+      $this->max_font_size = $val;
+  }
+
   public function add_word($word, $nbr_occurence = 1) {
     $this->insert_word($word, $nbr_occurence);
     $this->process_frequency_table();
@@ -94,9 +105,18 @@ class FrequencyTable {
     $count = count($this->table);
     foreach($this->table as $key => $val) {
       $f = $this->table[$key]->count / $count;
-      // TODO: fix font size for small numbers of words
-      $this->table[$key]->size = (integer)(3 * $this->total_occurences * $f) + 10;
-      $this->table[$key]->size += rand(-2, 2); // Add some noize to the font sizes
+
+      $font_size = (integer)(3 * $this->total_occurences * $f) + 10;
+      $font_size += rand(-2, 2); // Add some noize to the font sizes
+
+      // Set min/max val for font size
+      if ($font_size < $this->min_font_size) {
+          $font_size = $this->min_font_size;
+      } elseif ($font_size > $this->max_font_size) {
+          $font_size = $this->max_font_size;
+      }
+      $this->table[$key]->size = $font_size;
+
       $this->table[$key]->angle = 0;
       if (rand(1, 10) <= $this->vertical_freq) $this->table[$key]->angle = 90;
       $this->table[$key]->box = imagettfbbox ($this->table[$key]->size, $this->table[$key]->angle, $this->font, $key);
