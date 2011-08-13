@@ -26,7 +26,7 @@ class FrequencyTable {
   private $font;
   private $vertical_freq = FrequencyTable::WORDS_MAINLY_HORIZONTAL;
   private $total_occurences = 0;
-  private $min_font_size = 72;
+  private $min_font_size = 16;
   private $max_font_size = 72;
   
   private $max_count = 1;
@@ -114,7 +114,7 @@ class FrequencyTable {
     foreach($this->table as $key => $val) {
       $diffcount = ($this->max_count - $this->min_count) != 0 ? ($this->max_count - $this->min_count) : 1;
       $diffsize = ($this->max_font_size - $this->min_font_size) != 0 ? ($this->max_font_size - $this->min_font_size) : 1;
-      $slope = ($this->max_font_size - $this->min_font_size) / $diffcount;
+      $slope = $diffsize / $diffcount;
       $yintercept = $this->max_font_size - ($slope * $this->max_count);      	
       $font_size = (integer)($slope * $this->table[$key]->count + $yintercept);
 
