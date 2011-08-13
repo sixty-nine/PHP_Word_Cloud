@@ -26,8 +26,13 @@ class FrequencyTable {
   private $font;
   private $vertical_freq = FrequencyTable::WORDS_MAINLY_HORIZONTAL;
   private $total_occurences = 0;
-  private $min_font_size = 10;
-  private $max_font_size = 60;
+  private $min_font_size = 14;
+  private $max_font_size = 72;
+  
+  private $max_count = 1;
+  private $min_count = 1;
+  private $padding_size = 1.05;
+  private $padding_angle = 0;
 
   /**
    * Construct a new FrequencyTable from a word list and a font
@@ -75,6 +80,9 @@ class FrequencyTable {
         $word = $this->cleanup_word($word);
         if (array_key_exists($word, $this->table)) {
           $this->table[$word]->count += $count;
+          if ($this->table[$word]->count > $this->max_count) {          	
+              $this->max_count = $this->table[strtolower($word)]->count;
+          }
         }
         else {
           $this->table[$word] = new StdClass();
@@ -104,10 +112,9 @@ class FrequencyTable {
     arsort($this->table);
     $count = count($this->table);
     foreach($this->table as $key => $val) {
-      $f = $this->table[$key]->count / $count;
-
-      $font_size = (integer)(3 * $this->total_occurences * $f) + 10;
-      $font_size += rand(-2, 2); // Add some noize to the font sizes
+      $slope = ($this->max_font_size - $this->min_font_size) / ($this->max_count - $this->min_count);
+      $yintercept = $this->max_font_size - ($slope * $this->max_count);      	
+      $font_size = (integer)($slope * $this->table[$key]->count) + $yintercept;
 
       // Set min/max val for font size
       if ($font_size < $this->min_font_size) {
@@ -119,7 +126,7 @@ class FrequencyTable {
 
       $this->table[$key]->angle = 0;
       if (rand(1, 10) <= $this->vertical_freq) $this->table[$key]->angle = 90;
-      $this->table[$key]->box = imagettfbbox ($this->table[$key]->size, $this->table[$key]->angle, $this->font, $key);
+      $this->table[$key]->box = imagettfbbox ($this->table[$key]->size * $this->padding_size, $this->table[$key]->angle - $this->padding_angle, $this->font, $key);
     }
   }
 

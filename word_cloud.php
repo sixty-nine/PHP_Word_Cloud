@@ -65,7 +65,7 @@ class WordCloud {
         'angle' => $val->angle,
         'size' => $val->size,
         'color' => $palette[$i % count($palette)],
-        'box' => $boxes[$key],
+        'box' => isset($boxes[$key]) ? $boxes[$key] : '',
       );
       imagettftext($this->image, $val->size, $val->angle, $cx, $cy, $palette[$i % count($palette)], $this->font, $key);
       $this->mask->add(new Box($cx, $cy, $val->box));
