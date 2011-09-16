@@ -73,7 +73,8 @@ class FrequencyTable {
   
    private function insert_word($word, $count = 1,$title=null,$reject=false,$cleanup=false) {
       // Reject unwanted words
-      if (($reject) && ( (strlen($word) < 3) || (in_array(strtolower($word), $this->rejected_words))) )  {
+      $word = strtolower($word);
+      if (($reject) && ( (strlen($word) < 3) || (in_array($word, $this->rejected_words))) )  {
         return;
       }
       else {
@@ -89,7 +90,7 @@ class FrequencyTable {
         }
         $this->total_occurences += $count; 
         if ($this->table[$word]->count > $this->max_count) {            
-              $this->max_count = $this->table[strtolower($word)]->count;
+              $this->max_count = $this->table[$word]->count;
         }
       }
    }
