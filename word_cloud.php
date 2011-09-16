@@ -24,9 +24,10 @@ class WordCloud {
     $this->mask = new Mask();
     if(is_array($text)){
       $this->table = new FrequencyTable($font,'',$vertical_freq);//, $text);
-      foreach($text as $word => $count){
-      $this->table->add_word($word,$count);
-  	  }
+      foreach($text as $row){
+      	if(!isset($row['title'])) $row['title'] = null;
+      	$this->table->add_word($row['word'],$row['count'],$row['title']);
+      }
     }else{
 	    $this->table = new FrequencyTable($font, $text, $vertical_freq);
     }
@@ -108,7 +109,7 @@ class WordCloud {
     $map = array();
     $i = 0;
     foreach($words as $key => $val) {
-      $map[] = array($key, $boxes[$i]);
+      $map[] = array($key, $boxes[$i],$val->title);
       $i += 1;
     }
 
