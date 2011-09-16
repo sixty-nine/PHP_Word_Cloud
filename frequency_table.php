@@ -61,28 +61,25 @@ class FrequencyTable {
 
   public function add_word($word, $nbr_occurence = 1) {
     $this->insert_word($word, $nbr_occurence);
-    $this->process_frequency_table();
   }
 
   /**
    * Return the current frequency table
    */
   public function get_table() {
+    $this->process_frequency_table();
     return $this->table;
   }
   
-   private function insert_word($word, $count = 1) {
+   private function insert_word($word, $count = 1,$reject=false,$cleanup=false) {
       // Reject unwanted words
-      if ((strlen($word) < 3) || (in_array(strtolower($word), $this->rejected_words))) {
+      if (($reject) && ( (strlen($word) < 3) || (in_array(strtolower($word), $this->rejected_words))) )  {
         return;
       }
       else {
-        $word = $this->cleanup_word($word);
+        if($cleanup) $word = $this->cleanup_word($word);
         if (array_key_exists($word, $this->table)) {
           $this->table[$word]->count += $count;
-          if ($this->table[$word]->count > $this->max_count) {          	
-              $this->max_count = $this->table[strtolower($word)]->count;
-          }
         }
         else {
           $this->table[$word] = new StdClass();
@@ -90,6 +87,9 @@ class FrequencyTable {
           $this->table[$word]->word = $word;
         }
         $this->total_occurences += $count; 
+        if ($this->table[$word]->count > $this->max_count) {            
+              $this->max_count = $this->table[strtolower($word)]->count;
+        }
       }
    }
   
