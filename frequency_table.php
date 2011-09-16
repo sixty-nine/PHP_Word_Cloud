@@ -112,11 +112,12 @@ class FrequencyTable {
   private function process_frequency_table() {
     arsort($this->table);
     $count = count($this->table);
-    foreach($this->table as $key => $val) {
       $diffcount = ($this->max_count - $this->min_count) != 0 ? ($this->max_count - $this->min_count) : 1;
       $diffsize = ($this->max_font_size - $this->min_font_size) != 0 ? ($this->max_font_size - $this->min_font_size) : 1;
       $slope = $diffsize / $diffcount;
-      $yintercept = $this->max_font_size - ($slope * $this->max_count);      	
+      $yintercept = $this->max_font_size - ($slope * $this->max_count);    
+      
+    foreach($this->table as $key => $val) {  	
       $font_size = (integer)($slope * $this->table[$key]->count + $yintercept);
 
       // Set min/max val for font size
