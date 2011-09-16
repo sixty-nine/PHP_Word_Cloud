@@ -59,8 +59,8 @@ class FrequencyTable {
       $this->max_font_size = $val;
   }
 
-  public function add_word($word, $nbr_occurence = 1) {
-    $this->insert_word($word, $nbr_occurence);
+  public function add_word($word, $nbr_occurence = 1,$title=null) {
+    $this->insert_word($word, $nbr_occurence,$title);
   }
 
   /**
@@ -71,7 +71,7 @@ class FrequencyTable {
     return $this->table;
   }
   
-   private function insert_word($word, $count = 1,$reject=false,$cleanup=false) {
+   private function insert_word($word, $count = 1,$title=null,$reject=false,$cleanup=false) {
       // Reject unwanted words
       if (($reject) && ( (strlen($word) < 3) || (in_array(strtolower($word), $this->rejected_words))) )  {
         return;
@@ -85,6 +85,7 @@ class FrequencyTable {
           $this->table[$word] = new StdClass();
           $this->table[$word]->count = $count;
           $this->table[$word]->word = $word;
+          $this->table[$word]->title = $title;
         }
         $this->total_occurences += $count; 
         if ($this->table[$word]->count > $this->max_count) {            
