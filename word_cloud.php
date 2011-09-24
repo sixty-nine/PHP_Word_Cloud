@@ -56,12 +56,12 @@ class WordCloud {
     return $this->image;
   }
 
-  public function render($palette) {
+  public function render($palette,$words_limit=null) {
     $i = 0;
     $positions = array();
     
     foreach($this->table->get_table() as $key => $val) {
-
+	if(($words_limit!=null) && ($words_limit<=$i)) break;
       // Set the center so that vertical words are better distributed
       if ($val->angle == 0) {
         $cx = $this->width /3;
@@ -121,9 +121,11 @@ class WordCloud {
 
     $words = $this->table->get_table();
     $boxes = $this->mask->get_table();
+   /* WHY?
     if (count($boxes) != count($words)) {
       throw new Exception('Error: mask count <> word count');
     }
+   */
 
     $map = array();
     $i = 0;
