@@ -33,6 +33,7 @@ class FrequencyTable {
   private $min_count = 1;
   private $padding_size = 1.05;
   private $padding_angle = 0;
+  private $words_limit;
 
   /**
    * Construct a new FrequencyTable from a word list and a font
@@ -40,8 +41,8 @@ class FrequencyTable {
    * @param string $font The TTF font file
    * @param integer $vertical_freq Frequency of vertical words (0 - 10, 0 = All horizontal, 10 = All vertical)
    */
-  public function __construct($font, $text = '', $vertical_freq = FrequencyTable::WORDS_MAINLY_HORIZONTAL) {
-
+  public function __construct($font, $text = '', $vertical_freq = FrequencyTable::WORDS_MAINLY_HORIZONTAL,$words_limit=null) {
+    $this->words_limit = $words_limit;
     $this->font = $font;
     $this->vertical_freq = $vertical_freq;
     $words = preg_split("/[\n\r\t ]+/", $text);
@@ -117,6 +118,9 @@ class FrequencyTable {
       $diffsize = ($this->max_font_size - $this->min_font_size) != 0 ? ($this->max_font_size - $this->min_font_size) : 1;
       $slope = $diffsize / $diffcount;
       $yintercept = $this->max_font_size - ($slope * $this->max_count);    
+      
+      //cut the table so we have only $this->words_limit
+      $this->table = array_slice($this->table, 0, $this->words_limit);
       
     foreach($this->table as $key => $val) {  	
       $font_size = (integer)($slope * $this->table[$key]->count + $yintercept);
