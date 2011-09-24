@@ -17,7 +17,7 @@ class WordCloud {
   private $image;
   private $imagecolor;
 
-  public function __construct($width, $height, $font, $text=null, $imagecolor=array( 0,0, 0, 127), $vertical_freq = FrequencyTable::WORDS_MAINLY_HORIZONTAL) {
+  public function __construct($width, $height, $font, $text=null, $imagecolor=array( 0,0, 0, 127),$words_limit=null, $vertical_freq = FrequencyTable::WORDS_MAINLY_HORIZONTAL) {
     $this->width = $width;
     $this->height = $height;
     $this->font = $font;
@@ -25,13 +25,13 @@ class WordCloud {
     
     $this->mask = new Mask();
     if(is_array($text)){
-      $this->table = new FrequencyTable($font,'',$vertical_freq);//, $text);
+      $this->table = new FrequencyTable($font,'',$vertical_freq,$words_limit);//, $text);
       foreach($text as $row){
       	if(!isset($row['title'])) $row['title'] = null;
       	$this->table->add_word($row['word'],$row['count'],$row['title']);
       }
     }else{
-	    $this->table = new FrequencyTable($font, $text, $vertical_freq);
+	    $this->table = new FrequencyTable($font, $text, $vertical_freq,$words_limit);
     }
     $this->table->setMinFontSize(10);
     $this->table->setMaxFontSize(72);
@@ -56,12 +56,11 @@ class WordCloud {
     return $this->image;
   }
 
-  public function render($palette,$words_limit=null) {
+  public function render($palette) {
     $i = 0;
     $positions = array();
     
     foreach($this->table->get_table() as $key => $val) {
-	if(($words_limit!=null) && ($words_limit<=$i)) break;
       // Set the center so that vertical words are better distributed
       if ($val->angle == 0) {
         $cx = $this->width /3;
@@ -121,11 +120,10 @@ class WordCloud {
 
     $words = $this->table->get_table();
     $boxes = $this->mask->get_table();
-   /* WHY?
     if (count($boxes) != count($words)) {
       throw new Exception('Error: mask count <> word count');
     }
-   */
+
 
     $map = array();
     $i = 0;
