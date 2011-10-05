@@ -4,7 +4,7 @@ require __DIR__.'/../lib/src/autoload.php';
 
 use Dreamcraft\WordCloud\WordCloudBuilder,
     Dreamcraft\WordCloud\WordCloudRenderer,
-    Dreamcraft\WordCloud\Palette,
+    Dreamcraft\WordCloud\Helper\Palette,
     Dreamcraft\WordCloud\FrequencyTable\FrequencyTableFactory;
 
 $text = <<<EOT
