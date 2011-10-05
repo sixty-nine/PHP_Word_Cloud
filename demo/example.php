@@ -7,6 +7,9 @@ use Dreamcraft\WordCloud\WordCloudBuilder,
     Dreamcraft\WordCloud\Helper\Palette,
     Dreamcraft\WordCloud\FrequencyTable\FrequencyTableFactory;
 
+/**
+ * The text to build the word cloud from
+ */
 $text = <<<EOT
 A tag cloud (word cloud, or weighted list in visual design) is a visual representation for text data, typically used to depict keyword metadata (tags) on websites, or to visualize free form text. 'Tags' are usually single words, normally listed alphabetically, and the importance of each tag is shown with font size or color.[1] This format is useful for quickly perceiving the most prominent terms and for locating a term alphabetically to determine its relative prominence. When used as website navigation aids, the terms are hyperlinked to items associated with the tag.
 In the language of visual design, a tag cloud (or word cloud) is one kind of "weighted list", as commonly used on geographic maps to represent the relative size of cities in terms of relative typeface size. An early printed example of a weighted list of English keywords was the "subconscious files" in Douglas Coupland's Microserfs (1995). A German appearance occurred in 1992.[2]
@@ -20,22 +23,42 @@ Over-saturation of the tag cloud method and ambivalence about its utility as a w
 A second generation of software development discovered a wider diversity of uses for tag clouds as a basic visualization method for text data. Most notably, the method was adapted for visualizing word frequency in free-form natural language texts, first by TagCrowd[7], created by Stanford University researcher and designer Daniel Steinbock in 2006[8], and further popularized by Wordle[9], created by IBM researcher Jonathan Feinberg in 2008.[10]
 EOT;
 
+/**
+ * The TrueType font to use
+ */
 $font = __DIR__.'/../fonts/Paper_Cut.ttf';
 
+/**
+ * Dimensions of the resulting image
+ */
 $img_width = 1000;
 
 $img_height = 1000;
 
+/**
+ * The color palette to use
+ */
 $palette = Palette::getPaletteFromHex(array('FFA700', 'FFDF00', 'FF4F00', 'FFEE73'));
 
+/**
+ * Create a frequency table from the text
+ */
 $ft = FrequencyTableFactory::getDefaultFrequencyTable($text);
 
+/**
+ * Setup the cloud builder and build the word cloud
+ */
 $builder = new WordCloudBuilder($ft, $font, $palette, $img_width, $img_height);
 $cloud = $builder->build(50);
 
+/**
+ * Render the word cloud image
+ */
 $img = WordCloudRenderer::render($cloud);
 
+/**
+ * Return the image to the client
+ */
 header('Content-type: image/png');
 imagepng($img);
 imagedestroy($img);
-
