@@ -2,11 +2,9 @@
 
 namespace Dreamcraft\WordCloud\Tests\FrequencyTable\Filters;
 
-require_once __DIR__.'/../../../../autoload.php';
-
 use Dreamcraft\WordCloud\FrequencyTable\Filters;
 
-class ArrayTest extends \PHPUnit_Framework_TestCase
+class FrequencyTableFiltersTest extends \PHPUnit_Framework_TestCase
 {
     public function testFTF_RemoveShortWords()
     {
