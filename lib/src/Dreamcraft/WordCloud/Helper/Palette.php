@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamcraft\WordCloud;
+namespace Dreamcraft\WordCloud\Helper;
 
 /**
  * Generate color palettes (arrays of colors)
