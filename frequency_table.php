@@ -33,6 +33,7 @@ class FrequencyTable {
   private $min_count = 1;
   private $padding_size = 1.05;
   private $padding_angle = 0;
+  private $words_limit;
 
   /**
    * Construct a new FrequencyTable from a word list and a font
@@ -40,8 +41,8 @@ class FrequencyTable {
    * @param string $font The TTF font file
    * @param integer $vertical_freq Frequency of vertical words (0 - 10, 0 = All horizontal, 10 = All vertical)
    */
-  public function __construct($font, $text = '', $vertical_freq = FrequencyTable::WORDS_MAINLY_HORIZONTAL) {
-
+  public function __construct($font, $text = '', $vertical_freq = FrequencyTable::WORDS_MAINLY_HORIZONTAL,$words_limit=null) {
+    $this->words_limit = $words_limit;
     $this->font = $font;
     $this->vertical_freq = $vertical_freq;
     $words = preg_split("/[\n\r\t ]+/", $text);
@@ -59,37 +60,39 @@ class FrequencyTable {
       $this->max_font_size = $val;
   }
 
-  public function add_word($word, $nbr_occurence = 1) {
-    $this->insert_word($word, $nbr_occurence);
-    $this->process_frequency_table();
+  public function add_word($word, $nbr_occurence = 1,$title=null) {
+    $this->insert_word($word, $nbr_occurence,$title);
   }
 
   /**
    * Return the current frequency table
    */
   public function get_table() {
+    $this->process_frequency_table();
     return $this->table;
   }
   
-   private function insert_word($word, $count = 1) {
+   private function insert_word($word, $count = 1,$title=null,$reject=false,$cleanup=false) {
       // Reject unwanted words
-      if ((strlen($word) < 3) || (in_array(strtolower($word), $this->rejected_words))) {
+      $word = strtolower($word);
+      if (($reject) && ( (strlen($word) < 3) || (in_array($word, $this->rejected_words))) )  {
         return;
       }
       else {
-        $word = $this->cleanup_word($word);
+        if($cleanup) $word = $this->cleanup_word($word);
         if (array_key_exists($word, $this->table)) {
           $this->table[$word]->count += $count;
-          if ($this->table[$word]->count > $this->max_count) {          	
-              $this->max_count = $this->table[strtolower($word)]->count;
-          }
         }
         else {
           $this->table[$word] = new StdClass();
           $this->table[$word]->count = $count;
           $this->table[$word]->word = $word;
+          $this->table[$word]->title = $title;
         }
         $this->total_occurences += $count; 
+        if ($this->table[$word]->count > $this->max_count) {            
+              $this->max_count = $this->table[$word]->count;
+        }
       }
    }
   
@@ -111,11 +114,15 @@ class FrequencyTable {
   private function process_frequency_table() {
     arsort($this->table);
     $count = count($this->table);
-    foreach($this->table as $key => $val) {
       $diffcount = ($this->max_count - $this->min_count) != 0 ? ($this->max_count - $this->min_count) : 1;
       $diffsize = ($this->max_font_size - $this->min_font_size) != 0 ? ($this->max_font_size - $this->min_font_size) : 1;
       $slope = $diffsize / $diffcount;
-      $yintercept = $this->max_font_size - ($slope * $this->max_count);      	
+      $yintercept = $this->max_font_size - ($slope * $this->max_count);    
+      
+      //cut the table so we have only $this->words_limit
+      $this->table = array_slice($this->table, 0, $this->words_limit);
+      
+    foreach($this->table as $key => $val) {  	
       $font_size = (integer)($slope * $this->table[$key]->count + $yintercept);
 
       // Set min/max val for font size
