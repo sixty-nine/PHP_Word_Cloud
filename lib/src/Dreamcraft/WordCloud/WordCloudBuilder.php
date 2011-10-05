@@ -103,7 +103,7 @@ class WordCloudBuilder
             }
             else {
                 $cx = $this->cloud->getImageWidth() / 3 + rand(0, $this->cloud->getImageWidth() / 10);
-                $cy = $this->height / 2 + rand(-$this->cloud->getImageHeight() / 10, $this->cloud->getImageHeight() / 10);
+                $cy = $this->cloud->getImageHeight() / 2 + rand(-$this->cloud->getImageHeight() / 10, $this->cloud->getImageHeight() / 10);
             }
 
             list($cx, $cy) = $this->cloud->getMask()->searchPlace($cx, $cy, $word->text_box);

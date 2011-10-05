@@ -24,7 +24,8 @@ class WordCloudRenderer
         }
 
         // Crop the image
-        // TODO: check if the transparency must be set to $image2 or if it is copied
+        // TODO: fix transparency
+        // TODO: fix croping
         $image2 = imagecreatetruecolor(abs($x2 - $x1), abs($y2 - $y1));
         imagesavealpha($image2, true);
         imagecopy($image2 ,$image, 0, 0, $x1, $y1, abs($x2 - $x1), abs($y2 - $y1));
