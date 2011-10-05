@@ -1,5 +1,7 @@
 <?php
 
+namespace Dreamcraft\WordCloud\FrequencyTable;
+
 class FrequencyTableWord
 {
     public $word;

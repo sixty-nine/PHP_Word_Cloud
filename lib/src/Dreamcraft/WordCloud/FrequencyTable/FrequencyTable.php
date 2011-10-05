@@ -1,5 +1,7 @@
 <?php
 
+namespace Dreamcraft\WordCloud\FrequencyTable;
+
 /**
  * Stores the words to and their frequencies.
  */
@@ -97,10 +99,10 @@ class FrequencyTable
     /**
      * Add a filter to the filters chain. Each filter in the filter chain can be applied in order when words are added.
      * If a filter in the chain returns an empty string, the word will not be added to the frequency table.
-     * @param FrequencyTableFilterInterface $filter
+     * @param \Dreamcraft\WordCloud\FrequencyTable\Filters\FrequencyTableFilterInterface $filter
      * @return void
      */
-    public function addFilter(FrequencyTableFilterInterface $filter)
+    public function addFilter(Filters\FrequencyTableFilterInterface $filter)
     {
         $this->filters[] = $filter;
     }

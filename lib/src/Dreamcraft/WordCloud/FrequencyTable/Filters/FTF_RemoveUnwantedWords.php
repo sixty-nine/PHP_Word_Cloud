@@ -1,5 +1,7 @@
 <?php
 
+namespace Dreamcraft\WordCloud\FrequencyTable\Filters;
+
 class FTF_RemoveUnwantedWords implements FrequencyTableFilterInterface
 {
     protected $unwanted_words;

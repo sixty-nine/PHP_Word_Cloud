@@ -1,5 +1,7 @@
 <?php
 
+namespace Dreamcraft\WordCloud\FrequencyTable\Filters;
+
 class FTF_RemoveTrailingPunctuation implements FrequencyTableFilterInterface
 {
     protected $punctuation;

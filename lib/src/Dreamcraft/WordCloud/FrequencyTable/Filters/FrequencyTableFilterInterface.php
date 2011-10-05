@@ -1,5 +1,7 @@
 <?php
 
+namespace Dreamcraft\WordCloud\FrequencyTable\Filters;
+
 interface FrequencyTableFilterInterface
 {
     /**

@@ -1,5 +1,7 @@
 <?php
 
+namespace Dreamcraft\WordCloud\FrequencyTable;
+
 class FrequencyTableFactory
 {
     public static function getFrequencyTable($words = '', $filters = array())
@@ -24,10 +26,10 @@ class FrequencyTableFactory
     public static function getDefaultFrequencyTable($words = '')
     {
         $filters = array(
-            new FTF_RemoveShortWords(),
-            new FTF_RemoveTrailingPunctuation(),
-            new FTF_RemoveUnwantedCharacters(),
-            new FTF_RemoveTrailingPunctuation(),
+            new Filters\FTF_RemoveShortWords(),
+            new Filters\FTF_RemoveTrailingPunctuation(),
+            new Filters\FTF_RemoveUnwantedCharacters(),
+            new Filters\FTF_RemoveTrailingPunctuation(),
         );
         return self::getFrequencyTable($words, $filters);
     }

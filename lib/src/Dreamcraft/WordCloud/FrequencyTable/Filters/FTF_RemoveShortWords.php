@@ -1,5 +1,7 @@
 <?php
 
+namespace Dreamcraft\WordCloud\FrequencyTable\Filters;
+
 class FTF_RemoveShortWords implements FrequencyTableFilterInterface
 {
     protected $min_length;
@@ -14,7 +16,7 @@ class FTF_RemoveShortWords implements FrequencyTableFilterInterface
      */
     public function filterWord($word)
     {
-        if (strlen($word) < $this->min_length)  {
+        if (strlen($word) <= $this->min_length)  {
             return false;
         }
         return $word;
