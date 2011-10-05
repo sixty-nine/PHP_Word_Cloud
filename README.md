@@ -1,5 +1,5 @@
 Wordle-like clickable cloud of words in PHP
-===============================
+===========================================
 
 Inspired by http://www.wordle.net/
 
@@ -14,3 +14,8 @@ Contributors:
 
 
 This source file is subject to the MIT license that is bundled  with this source code in the file LICENSE.
+
+Running the tests
+-----------------
+
+    phpunit -c lib/src/Dreamcraft/WordCloud/Tests/phpunit.xml
