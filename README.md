@@ -4,8 +4,11 @@ Wordle-like clickable cloud of words in PHP
 Inspired by http://www.wordle.net/
 
 Author:
+
  * Daniel Barsotti / info [at] dreamcraft [dot] ch
+
 Contributors:
+
  * jaskra
  * mrahmadt
 
