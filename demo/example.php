@@ -8,22 +8,14 @@ use Dreamcraft\WordCloud\WordCloudBuilder,
     Dreamcraft\WordCloud\FrequencyTable\FrequencyTableFactory;
 
 $text = <<<EOT
-dreamcraft.ch is a developement company based in Switzerland, aimed to create, integrate and mantain cutting-edge technology web applications.
-We provide you our expertise in PHP/MySQL, Microsoft .NET and various Content Management Systems in order to develop new web applications or maintain and upgrade your current web sites.
-Our philosophy:
-Establish a durable and trustworthy win-win relation with our customers.
-Use quality Open Source Software whenever possible.
-Enforce good programming rules and standards to create better rich content web 2.0 applications.
-A folk wisdom says "united we stand, divided we fall". As such we work closely with other Swiss companies to offer you an even larger range of skills.
-Aicom are the creators of interactive web based tools such as FormFish, MettingPuzzle or MailJuggler.
-oriented.net is a high-quality web hosting company based in Switzerland. Our partnership with them allows us to offer advanced hosting solutions to your web application.
+A tag cloud (word cloud, or weighted list in visual design) is a visual representation for text data, typically used to depict keyword metadata (tags) on websites, or to visualize free form text. 'Tags' are usually single words, normally listed alphabetically, and the importance of each tag is shown with font size or color.[1] This format is useful for quickly perceiving the most prominent terms and for locating a term alphabetically to determine its relative prominence. When used as website navigation aids, the terms are hyperlinked to items associated with the tag.
 EOT;
 
 $font = __DIR__.'/../fonts/TheThreeStoogesFont.ttf';
 
-$img_width = 600;
+$img_width = 1000;
 
-$img_height = 600;
+$img_height = 1000;
 
 $palette = Palette::getPaletteFromHex(array('FFA700', 'FFDF00', 'FF4F00', 'FFEE73'));
 

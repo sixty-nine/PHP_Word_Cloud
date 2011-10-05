@@ -37,7 +37,7 @@ class WordCloudBuilder
         $limit = null,
         $min_font_size = 16,
         $max_font_size = 72,
-        $orientation = self::WORDS_HORIZONTAL,
+        $orientation = self::WORDS_MAINLY_HORIZONTAL,
         $padding_size = 1.05,
         $padding_angle = 0
     )

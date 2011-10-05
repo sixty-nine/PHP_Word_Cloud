@@ -20,7 +20,7 @@ class WordCloudRenderer
         foreach($cloud->getWords() as $word) {
             // TODO: find a way to allocate the colors outside of the loop
             $color = imagecolorallocate($image, $word->color[0], $word->color[1], $word->color[2]);
-            imagettftext($image, $word->size, $word->angle, $word->x, $word->cy, $color, $cloud->getFont(), $word->text);
+            imagettftext($image, $word->size, $word->angle, $word->x, $word->y, $color, $cloud->getFont(), $word->text);
         }
 
         // Crop the image
