@@ -15,14 +15,24 @@ class WordCloud {
   private $mask;
   private $table;
   private $image;
+  private $imagecolor;
 
-  public function __construct($width, $height, $font, $text, $vertical_freq = FrequencyTable::WORDS_MAINLY_HORIZONTAL) {
+  public function __construct($width, $height, $font, $text=null, $imagecolor=array( 0,0, 0, 127),$words_limit=null, $vertical_freq = FrequencyTable::WORDS_MAINLY_HORIZONTAL) {
     $this->width = $width;
     $this->height = $height;
     $this->font = $font;
-
+    $this->imagecolor = $imagecolor;
+    
     $this->mask = new Mask();
-    $this->table = new FrequencyTable($font, $text, $vertical_freq);
+    if(is_array($text)){
+      $this->table = new FrequencyTable($font,'',$vertical_freq,$words_limit);//, $text);
+      foreach($text as $row){
+      	if(!isset($row['title'])) $row['title'] = null;
+      	$this->table->add_word($row['word'],$row['count'],$row['title']);
+      }
+    }else{
+	    $this->table = new FrequencyTable($font, $text, $vertical_freq,$words_limit);
+    }
     $this->table->setMinFontSize(10);
     $this->table->setMaxFontSize(72);
     // $this->table = new FrequencyTable($font);//, $text);
@@ -32,7 +42,14 @@ class WordCloud {
     // $this->table->add_word('word4', 4);
     // $this->table->add_word('word5');
     // for($i = 6; $i <= 20; $i++) $this->table->add_word('word'.$i, $i % 5);
+    
     $this->image = imagecreatetruecolor($width, $height);
+	//Set the flag to save full alpha channel information (as opposed to single-color transparency) when saving PNG images
+    imagesavealpha($this->image, true);
+	//behaves identically to imagecolorallocate() with the addition of the transparency parameter alpha
+    $trans_colour = imagecolorallocatealpha($this->image,  $imagecolor[0],$imagecolor[1], $imagecolor[2], $imagecolor[3]);
+    imagefill($this->image, 0, 0, $trans_colour);
+
   }
 
   public function get_image() {
@@ -44,7 +61,6 @@ class WordCloud {
     $positions = array();
     
     foreach($this->table->get_table() as $key => $val) {
-
       // Set the center so that vertical words are better distributed
       if ($val->angle == 0) {
         $cx = $this->width /3;
@@ -75,7 +91,17 @@ class WordCloud {
     // Crop the image
     list($x1, $y1, $x2, $y2) = $this->mask->get_bounding_box();
     $image2 = imagecreatetruecolor(abs($x2 - $x1), abs($y2 - $y1));
+    
+    //Set the flag to save full alpha channel information (as opposed to single-color transparency) when saving PNG images
+    imagesavealpha($image2, true);
+    //behaves identically to imagecolorallocate() with the addition of the transparency parameter alpha
+    $trans_colour = imagecolorallocatealpha($image2, $this->imagecolor[0],$this->imagecolor[1], $this->imagecolor[2], $this->imagecolor[3]);
+    imagefill($image2, 0, 0, $trans_colour);
+    
     imagecopy($image2 ,$this->image, 0, 0, $x1, $y1, abs($x2 - $x1), abs($y2 - $y1));
+
+
+    
     imagedestroy($this->image);
     $this->image = $image2;
 
@@ -98,10 +124,11 @@ class WordCloud {
       throw new Exception('Error: mask count <> word count');
     }
 
+
     $map = array();
     $i = 0;
     foreach($words as $key => $val) {
-      $map[] = array($key, $boxes[$i]);
+      $map[] = array($key, $boxes[$i],$val->title);
       $i += 1;
     }
 
