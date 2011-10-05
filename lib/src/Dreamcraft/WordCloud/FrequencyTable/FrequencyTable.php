@@ -34,12 +34,12 @@ class FrequencyTable
     /**
      * Add a word to the frequency table.
      * @param string $word The word to add
-     * @param string $title The title to use for the word, null if none
      * @param int $occurrences The number of time the word should be counted
+     * @param string $title The title to use for the word, null if none
      * @param boolean $use_filters If true the filters will be applied to the word, if false, the word will be added as it is (unless it is an empty string)
      * @return void
      */
-    public function addWord($word, $title = null,  $occurrences = 1, $use_filters = true)
+    public function addWord($word, $occurrences = 1, $title = null, $use_filters = true)
     {
         // Filter out unwanted words
         if ($use_filters) {
@@ -80,7 +80,7 @@ class FrequencyTable
             if ($use_word_as_title) {
                 $title = $word;
             }
-            $this->addWord($word, $title, 1, $use_filters);
+            $this->addWord($word, 1, $title, $use_filters);
         }
     }
 
@@ -116,5 +116,21 @@ class FrequencyTable
     {
         // Cut the table so we have only $limit words
         return array_slice($this->words, 0, $limit);
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalOccurrences()
+    {
+        return $this->total_occurrences;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMaxOccurrences()
+    {
+        return $this->max_occurrences;
     }
 }
