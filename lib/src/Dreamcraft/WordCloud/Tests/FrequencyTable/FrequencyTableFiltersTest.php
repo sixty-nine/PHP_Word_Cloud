@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamcraft\WordCloud\Tests\FrequencyTable\Filters;
+namespace Dreamcraft\WordCloud\Tests\FrequencyTable;
 
 use Dreamcraft\WordCloud\FrequencyTable\Filters;
 
