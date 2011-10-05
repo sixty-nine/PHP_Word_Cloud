@@ -8,7 +8,7 @@
  *          Creative Commons Attribution-NonCommercial-ShareAlike 3.0
  */
 
-class WordCloud {
+class WordCloudOld {
 
   private $width, $height;
   private $font;

@@ -1,12 +1,6 @@
 <?php
-/**
- * This file is part of the PHP_Word_Cloud project.
- * http://github.com/sixty-nine/PHP_Word_Cloud
- *
- * @author Daniel Barsotti / dan [at] dreamcraft [dot] ch
- * @license http://creativecommons.org/licenses/by-nc-sa/3.0/
- *          Creative Commons Attribution-NonCommercial-ShareAlike 3.0
- */
+
+namespace Dreamcraft\WordCloud;
 
 /**
  * List of already placed boxes used to search a free space for a new box.
@@ -23,7 +17,7 @@ class Mask {
     $this->drawn_boxes[] = $box;
   }
 
-  public function get_table() { return $this->drawn_boxes; }
+  public function getTable() { return $this->drawn_boxes; }
 
   /**
    * Test whether a box overlaps with the already drawn boxes.
@@ -39,17 +33,15 @@ class Mask {
     return false;
   }
 
-  /**
-   * Search a free place for a new box.
-   *
-   * @param object $im The GD image
-   * @param float $ox The x coordinate of the starting search point
-   * @param float $oy The y coordinate of the starting search point
-   * @param array $box The 8 coordinates of the new box
-   * @param Mask $mask The mask containing the already drawn boxes
-   * @return array The x and y coordinates for the new box
-   */
-  function search_place($im, $ox, $oy, $box) {
+    /**
+     * Search a free place for a new box.
+     *
+     * @param float $ox The x coordinate of the starting search point
+     * @param float $oy The y coordinate of the starting search point
+     * @param array $box The 8 coordinates of the new box
+     * @return array The x and y coordinates for the new box
+     */
+  function searchPlace($ox, $oy, $box) {
     $place_found = false;
     $i = 0; $x = $ox; $y = $oy;
     while (! $place_found) {
@@ -58,14 +50,12 @@ class Mask {
       $new_box = new Box($x, $y, $box);
       // TODO: Check if the new coord is in the clip area
       $place_found = ! $this->overlaps($new_box);
-      // Uncomment the next line to see the spiral used to search a free place
-      //imagesetpixel($im, $x, $y, imagecolorallocate($im, 255, 0, 0));
       $i += 1;
     }
     return array($x, $y);
   }
 
-  public function get_bounding_box($margin = 10) {
+  public function getBoundingBox($margin = 10) {
     $left = null; $right = null;
     $top = null; $bottom = null;
     foreach($this->drawn_boxes as $box) {

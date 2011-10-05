@@ -1,12 +1,6 @@
 <?php
-/**
- * This file is part of the PHP_Word_Cloud project.
- * http://github.com/sixty-nine/PHP_Word_Cloud
- *
- * @author Daniel Barsotti / dan [at] dreamcraft [dot] ch
- * @license http://creativecommons.org/licenses/by-nc-sa/3.0/
- *          Creative Commons Attribution-NonCommercial-ShareAlike 3.0
- */
+
+namespace Dreamcraft\WordCloud;
 
 /**
  * An axis-aligned rectangle with collision detection
@@ -55,8 +49,9 @@ class Box {
 
   /**
    * Return a string representing the HTML imagemap coords of the rect
+   * @return string
    */
-  public function get_map_coords() {
+  public function getMapCoords() {
     return "{$this->left},{$this->top},{$this->right},{$this->bottom}";
   }
 }

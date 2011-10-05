@@ -6,7 +6,7 @@ class FrequencyTableWord
 {
     public $word;
 
-    public $ttile;
+    public $title;
 
     public $count;
 

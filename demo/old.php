@@ -1,6 +1,6 @@
 <?php
 
-require dirname(__FILE__).'/../lib/src/tagcloud.php';
+require dirname(__FILE__) . '/../lib/src/tagcloud.php';
 
 $full_text = <<<EOT
 dreamcraft.ch is a developement company based in Switzerland, aimed to create, integrate and mantain cutting-edge technology web applications.

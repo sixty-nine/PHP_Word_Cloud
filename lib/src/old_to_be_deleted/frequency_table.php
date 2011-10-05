@@ -11,7 +11,7 @@
 /**
  * Table of words and frequencies along with some additionnal properties.
  */
-class FrequencyTable {
+class FrequencyTableOld {
 
   const WORDS_HORIZONTAL = 0;
   const WORDS_MAINLY_HORIZONTAL = 1;

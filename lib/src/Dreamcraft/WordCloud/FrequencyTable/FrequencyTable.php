@@ -115,7 +115,9 @@ class FrequencyTable
     public function getTable($limit = null)
     {
         // Cut the table so we have only $limit words
-        return array_slice($this->words, 0, $limit);
+        $table = array_slice($this->words, 0, $limit);
+        arsort($table);
+        return $table;
     }
 
     /**
