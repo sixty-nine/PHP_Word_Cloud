@@ -18,26 +18,26 @@ class FrequencyTable
     protected $filters = array();
 
     /**
-     * The total number of occurences of words
+     * The total number of occurrences of words
      * @var int
      */
-    protected $total_occurences = 0;
+    protected $total_occurrences = 0;
 
     /**
-     * The maximum number of occurences for a word
+     * The maximum number of occurrences for a word
      * @var int
      */
-    protected $max_occurences = 0;
+    protected $max_occurrences = 0;
 
     /**
      * Add a word to the frequency table.
      * @param string $word The word to add
      * @param string $title The title to use for the word, null if none
-     * @param int $occurences The number of time the word should be counted
+     * @param int $occurrences The number of time the word should be counted
      * @param boolean $use_filters If true the filters will be applied to the word, if false, the word will be added as it is (unless it is an empty string)
      * @return void
      */
-    public function addWord($word, $title = null,  $occurences = 1, $use_filters = true)
+    public function addWord($word, $title = null,  $occurrences = 1, $use_filters = true)
     {
         // Filter out unwanted words
         if ($use_filters) {
@@ -49,18 +49,18 @@ class FrequencyTable
 
         if (!$word) return; // Return if the word is empty
 
-        // Store the word and count occurences
+        // Store the word and count occurrences
         if (!array_key_exists($word, $this->words)) {
             // TODO: expose the $use_word_as_title parameter
-            $this->table[$word] = new FrequencyTableWord($word, $title);
+            $this->words[$word] = new FrequencyTableWord($word, $title);
         }
-        $this->table[$word]->count += $occurences;
+        $this->words[$word]->count += $occurrences;
 
         // Update global stats
-        $this->total_occurences += $count;
+        $this->total_occurrences += $occurrences;
 
-        if ($this->table[$word]->count > $this->max_occurences) {
-            $this->max_occurences = $this->table[$word]->count;
+        if ($this->words[$word]->count > $this->max_occurrences) {
+            $this->max_occurrences = $this->words[$word]->count;
         }
     }
 
