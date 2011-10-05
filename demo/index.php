@@ -1,6 +1,6 @@
 <?php
 
-require dirname(__FILE__).'/lib/tagcloud.php';
+require dirname(__FILE__).'/../lib/src/tagcloud.php';
 
 $full_text = <<<EOT
 dreamcraft.ch is a developement company based in Switzerland, aimed to create, integrate and mantain cutting-edge technology web applications.
@@ -14,7 +14,7 @@ Aicom are the creators of interactive web based tools such as FormFish, MettingP
 oriented.net is a high-quality web hosting company based in Switzerland. Our partnership with them allows us to offer advanced hosting solutions to your web application.
 EOT;
 
-$font = dirname(__FILE__).'/fonts/Arial.ttf';
+$font = dirname(__FILE__).'/../fonts/TheThreeStoogesFont.ttf';
 $width = 600;
 $height = 600;
 $cloud = new WordCloud($width, $height, $font, $full_text);
