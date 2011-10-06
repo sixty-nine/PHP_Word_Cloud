@@ -6,7 +6,7 @@ use Dreamcraft\WordCloud\WordCloud;
 
 class WordCloudRenderer
 {
-    public static function render(WordCloud $cloud)
+    public function render(WordCloud $cloud)
     {
         list($x1, $y1, $x2, $y2) = $cloud->getMask()->getBoundingBox();
         $bgcol = $cloud->getBackgroundColor();
@@ -24,18 +24,23 @@ class WordCloudRenderer
         }
 
         // Crop the image
-        // TODO: fix transparency
-        // TODO: fix croping
-        $image2 = imagecreatetruecolor(abs($x2 - $x1), abs($y2 - $y1));
-        imagesavealpha($image2, true);
-        imagecopy($image2 ,$image, 0, 0, $x1, $y1, abs($x2 - $x1), abs($y2 - $y1));
-        imagedestroy($image);
-        $image = $image2;
+        $image = $this->cropImage($image, $x1, $y1, $x2, $y2);
 
         // Adjust the map to the cropped image
         $cloud->getMask()->adjust(-$x1, -$y1);
 
         return $image;
+    }
+
+    protected function cropImage($img, $x1, $y1, $x2, $y2)
+    {
+        // TODO: fix transparency
+        // TODO: fix cropping
+        $image2 = imagecreatetruecolor(abs($x2 - $x1), abs($y2 - $y1));
+        imagesavealpha($image2, true);
+        imagecopy($image2 ,$img, 0, 0, $x1, $y1, abs($x2 - $x1), abs($y2 - $y1));
+        imagedestroy($img);
+        return $image2;
     }
 }
  

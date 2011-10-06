@@ -54,7 +54,8 @@ $cloud = $builder->build(50);
 /**
  * Render the word cloud image
  */
-$img = WordCloudRenderer::render($cloud);
+$renderer = new WordCloudRenderer();
+$img = $renderer->render($cloud);
 
 /**
  * Return the image to the client
