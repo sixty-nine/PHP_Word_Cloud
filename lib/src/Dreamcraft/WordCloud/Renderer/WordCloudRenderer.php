@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamcraft\WordCloud;
+namespace Dreamcraft\WordCloud\Renderer;
 
 use Dreamcraft\WordCloud\WordCloud;
 
