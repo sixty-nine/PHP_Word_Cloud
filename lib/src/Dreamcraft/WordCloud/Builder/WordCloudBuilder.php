@@ -53,7 +53,6 @@ class WordCloudBuilder
         $this->cloud->resetMask();
 
         // Variables for font size computation
-        $count = count($table);
         $min_count = 1;
         $max_count = $this->frequency_table->getMaxOccurrences();
         $diffcount = ($max_count - $min_count) != 0 ? ($max_count - $min_count) : 1;
