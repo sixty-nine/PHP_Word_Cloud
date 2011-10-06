@@ -1,8 +1,10 @@
 <?php
 
-namespace Dreamcraft\WordCloud;
+namespace Dreamcraft\WordCloud\Builder;
 
 use Dreamcraft\WordCloud\FrequencyTable\FrequencyTable;
+use Dreamcraft\WordCloud\WordCloud;
+use Dreamcraft\WordCloud\Box;
 
 class WordCloudBuilder
 {

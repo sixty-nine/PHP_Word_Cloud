@@ -2,7 +2,7 @@
 
 require __DIR__.'/../lib/src/autoload.php';
 
-use Dreamcraft\WordCloud\WordCloudBuilder,
+use Dreamcraft\WordCloud\Builder\WordCloudBuilder,
     Dreamcraft\WordCloud\Renderer\WordCloudRenderer,
     Dreamcraft\WordCloud\Helper\Palette,
     Dreamcraft\WordCloud\FrequencyTable\FrequencyTableFactory;
