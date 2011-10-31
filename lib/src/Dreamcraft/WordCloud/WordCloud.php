@@ -95,6 +95,11 @@ class WordCloud
         return $this->mask;
     }
 
+    public function setMask(Mask $mask)
+    {
+        $this->mask = $mask;
+    }
+
     public function resetMask()
     {
         $this->mask = new Mask();

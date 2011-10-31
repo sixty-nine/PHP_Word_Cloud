@@ -55,7 +55,7 @@ class Mask {
     return array($x, $y);
   }
 
-  public function getBoundingBox($margin = 10) {
+  public function getEnclosingBox($margin = 10) {
     $left = null; $right = null;
     $top = null; $bottom = null;
     foreach($this->drawn_boxes as $box) {
