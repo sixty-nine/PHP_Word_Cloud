@@ -8,8 +8,6 @@ class WordCloud
 
     protected $backgroundColor;
 
-    protected $palette;
-
     protected $imageHeight = 100;
 
     protected $imageWidth = 100;
@@ -68,16 +66,6 @@ class WordCloud
     public function getFont()
     {
         return $this->fontFile;
-    }
-
-    public function setPalette($palette)
-    {
-        $this->palette = $palette;
-    }
-
-    public function getPalette()
-    {
-        return $this->palette;
     }
 
     public function getImageWidth()

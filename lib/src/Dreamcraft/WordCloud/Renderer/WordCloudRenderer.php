@@ -28,7 +28,7 @@ class WordCloudRenderer
         }
 
         // Crop the image
-        $image = $this->cropImage($image, $x1, $y1, $x2, $y2);
+        $image = $this->cropImage($image, $x1, $y1, $x2, $y2, $bgcol);
 
         // Adjust the map to the cropped image
         $cloud->getMask()->adjust(-$x1, -$y1);

@@ -31,12 +31,11 @@ class WordCloudBuilder
         $this->frequency_table = $table;
         $this->cloud = new WordCloud($config['size'][0], $config['size'][1]);
         $this->cloud->setFont($config['font']);
-        $this->cloud->setPalette($config['palette']);
     }
 
     protected function checkConfigParameters($config)
     {
-        foreach (array('size', 'font', 'palette') as $param) {
+        foreach (array('size', 'font') as $param) {
             if (!array_key_exists($param, $config)) {
                 throw new \InvalidArgumentException("Missing config parameter '$param'");
             }
@@ -66,8 +65,6 @@ class WordCloudBuilder
     {
         $table = $this->frequency_table->getTable($limit);
 
-        $palette = $this->cloud->getPalette();
-        
         $counter = 0;
 
         $this->cloud->resetMask();

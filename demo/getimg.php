@@ -54,7 +54,6 @@ $builder = new WordCloudBuilder(
     BuilderContextFactory::getDefaultBuilderContext($ft, $palette, $font, $img_width, $img_height),
     array(
          'font' => $font,
-         'palette' => $palette,
          'size' => array($img_width, $img_height)
     )
 );
