@@ -8,6 +8,7 @@ use Dreamcraft\WordCloud\Builder\WordCloudBuilder,
     Dreamcraft\WordCloud\FrequencyTable\FrequencyTableFactory,
     Dreamcraft\WordCloud\Builder\Context\BuilderContextFactory;
 
+
 /**
  * The text to build the word cloud from
  */
@@ -40,6 +41,7 @@ $img_height = $_GET['h'];
  * The color palette to use
  */
 $palette = Palette::getPaletteFromHex(array('FFA700', 'FFDF00', 'FF4F00', 'FFEE73'));
+$palette = Palette::getNamedPalette('pastel');
 
 /**
  * Create a frequency table from the text
@@ -68,6 +70,9 @@ $img = $renderer->render($cloud);
 /**
  * Return the image to the client
  */
+$file = sprintf('%s/%s', sys_get_temp_dir(), uniqid());
 header('Content-type: image/png');
-imagepng($img);
+imagepng($img, $file);
 imagedestroy($img);
+echo file_get_contents($file);
+unlink($file);
