@@ -47,8 +47,6 @@ class WordCloudBuilder
 
     /**
      * @param int $limit The maximal number of words to show
-     * @param int $min_font_size The minimal font size
-     * @param int $max_font_size The maximal font size
      * @param int $orientation The orientation (see self::WORDS_* constants)
      * @param float $padding_size
      * @param int $padding_angle
@@ -56,9 +54,7 @@ class WordCloudBuilder
      */
     public function build(
         $limit = null,
-        $min_font_size = 16,
-        $max_font_size = 72,
-        $orientation = self::WORDS_MAINLY_HORIZONTAL,
+        $orientation = self::WORDS_MIXED,
         $padding_size = 1.05,
         $padding_angle = 0
     )
