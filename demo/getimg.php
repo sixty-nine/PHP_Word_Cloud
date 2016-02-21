@@ -2,11 +2,12 @@
 
 require __DIR__.'/../lib/src/autoload.php';
 
-use Dreamcraft\WordCloud\Builder\WordCloudBuilder,
-    Dreamcraft\WordCloud\Renderer\WordCloudRenderer,
-    Dreamcraft\WordCloud\Helper\Palette,
-    Dreamcraft\WordCloud\FrequencyTable\FrequencyTableFactory,
-    Dreamcraft\WordCloud\Builder\Context\BuilderContextFactory;
+use Dreamcraft\WordCloud\Builder\WordCloudBuilder;
+use Dreamcraft\WordCloud\Renderer\WordCloudRenderer;
+use Dreamcraft\WordCloud\Helper\Palette;
+use Dreamcraft\WordCloud\FrequencyTable\FrequencyTableFactory;
+use Dreamcraft\WordCloud\Builder\Context\BuilderContextFactory;
+use Dreamcraft\WordCloud\ImageBuilder\RawImageRenderer;
 
 
 /**
@@ -65,14 +66,8 @@ $cloud = $builder->build(50);
  * Render the word cloud image
  */
 $renderer = new WordCloudRenderer();
-$img = $renderer->render($cloud);
 
-/**
- * Return the image to the client
- */
-$file = sprintf('%s/%s', sys_get_temp_dir(), uniqid());
+$imgRenderer = new RawImageRenderer($cloud, $renderer);
+
 header('Content-type: image/png');
-imagepng($img, $file);
-imagedestroy($img);
-echo file_get_contents($file);
-unlink($file);
+echo $imgRenderer->getImage();

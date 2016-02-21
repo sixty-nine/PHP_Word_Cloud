@@ -6,7 +6,7 @@ class FTF_RemoveUnwantedCharacters implements FrequencyTableFilterInterface
 {
     protected $unwanted_characters;
 
-    public function __construct($unwanted_characters = array('?', '!', '\'', '"'))
+    public function __construct($unwanted_characters = array('?', '!', '\'', '"', '(', ')'))
     {
         $this->unwanted_characters = $unwanted_characters;
     }

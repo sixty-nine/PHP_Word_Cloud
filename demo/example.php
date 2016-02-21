@@ -1,3 +1,3 @@
-<body bgcolor="#FF7700">
+<body bgcolor="black">
     <img src="getimg.php?h=700&w=1000" />
 </body>
