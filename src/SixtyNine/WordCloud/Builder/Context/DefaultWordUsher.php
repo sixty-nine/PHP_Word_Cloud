@@ -2,8 +2,8 @@
 
 namespace SixtyNine\WordCloud\Builder\Context;
 
-use SixtyNine\WordCloud\Mask,
-    SixtyNine\WordCloud\Box;
+use SixtyNine\WordCloud\Mask;
+use SixtyNine\WordCloud\Box;
 
 /**
  * Responsible to find a place for the word in the cloud
@@ -36,8 +36,7 @@ class DefaultWordUsher extends WordUsher
         if ($angle == 0) {
             $cx = $this->img_width / 3;
             $cy = $this->img_height / 2;
-        }
-        else {
+        } else {
             $cx = $this->img_width / 3 - rand(0, $this->img_width / 10);
             $cy = $this->img_height / 2 - rand(-$this->img_height / 10, $this->img_height / 10);
         }

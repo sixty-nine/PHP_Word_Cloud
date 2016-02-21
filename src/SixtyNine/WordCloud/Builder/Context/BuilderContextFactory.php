@@ -2,8 +2,7 @@
 
 namespace SixtyNine\WordCloud\Builder\Context;
 
-use SixtyNine\WordCloud\FrequencyTable\FrequencyTable,
-    SixtyNine\WordCloud\Builder\Context\WordUsher;
+use SixtyNine\WordCloud\FrequencyTable\FrequencyTable;
 
 class BuilderContextFactory
 {
