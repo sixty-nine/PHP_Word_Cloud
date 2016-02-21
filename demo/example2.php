@@ -5,12 +5,12 @@
  */
 require __DIR__ . '/../vendor/autoload.php';
 
-use Dreamcraft\WordCloud\Builder\WordCloudBuilder;
-use Dreamcraft\WordCloud\Renderer\WordCloudRenderer;
-use Dreamcraft\WordCloud\Helper\Palette;
-use Dreamcraft\WordCloud\FrequencyTable\FrequencyTableFactory;
-use Dreamcraft\WordCloud\Builder\Context\BuilderContextFactory;
-use Dreamcraft\WordCloud\ImageBuilder\RawImageRenderer;
+use SixtyNine\WordCloud\Builder\WordCloudBuilder;
+use SixtyNine\WordCloud\Renderer\WordCloudRenderer;
+use SixtyNine\WordCloud\Helper\Palette;
+use SixtyNine\WordCloud\FrequencyTable\FrequencyTableFactory;
+use SixtyNine\WordCloud\Builder\Context\BuilderContextFactory;
+use SixtyNine\WordCloud\ImageBuilder\RawImageRenderer;
 
 $url = isset($_POST['url']) && $_POST['url'] ? : 'https://en.wikipedia.org/wiki/Wikipedia';
 $text = file_get_contents($url);
