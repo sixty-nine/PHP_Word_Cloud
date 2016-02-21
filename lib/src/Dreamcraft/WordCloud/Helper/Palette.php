@@ -35,6 +35,7 @@ class Palette
     /**
      * Construct a color palette from a list of hexadecimal colors (RRGGBB)
      * @param array $hex_array An array of hexadecimal color strings
+     * @throws \Exception
      * @return array
      */
     public static function getPaletteFromHex($hex_array)
@@ -43,7 +44,7 @@ class Palette
 
         foreach ($hex_array as $hex) {
             if (strlen($hex) != 6) {
-                throw new Exception("Invalid palette color '$hex'");
+                throw new \Exception("Invalid palette color '$hex'");
             }
             $palette[] = array(
                 hexdec(substr($hex, 0, 2)),
