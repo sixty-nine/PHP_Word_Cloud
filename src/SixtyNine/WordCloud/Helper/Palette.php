@@ -43,6 +43,9 @@ class Palette
         $palette = array();
 
         foreach ($hex_array as $hex) {
+            if (substr($hex, 0, 1) === '#') {
+                $hex = substr($hex, 1);
+            }
             if (strlen($hex) != 6) {
                 throw new \Exception("Invalid palette color '$hex'");
             }
