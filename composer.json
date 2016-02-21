@@ -1,0 +1,19 @@
+{
+    "name": "sixt-nine/word-cloud",
+    "description": "Generate word clouds with PHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniele Barsotti",
+            "email": "sixtnine.db@gmail.com"
+        }
+    ],
+    "require": {
+        "mistic100/randomcolor": "^1.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Dreamcraft\\WordCloud": "src"
+        }
+    }
+}

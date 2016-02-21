@@ -2,7 +2,7 @@
 
 namespace Dreamcraft\WordCloud\FrequencyTable\Filters;
 
-class FTF_RemoveTrailingPunctuation implements FrequencyTableFilterInterface
+class RemoveTrailingPunctuation implements FrequencyTableFilterInterface
 {
     protected $punctuation;
 

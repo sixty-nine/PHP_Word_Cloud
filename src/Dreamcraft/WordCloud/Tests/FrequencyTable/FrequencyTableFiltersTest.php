@@ -6,19 +6,19 @@ use Dreamcraft\WordCloud\FrequencyTable\Filters;
 
 class FrequencyTableFiltersTest extends \PHPUnit_Framework_TestCase
 {
-    public function testFTF_RemoveShortWords()
+    public function testRemoveShortWords()
     {
         $this->assertFilterWorks(
-            new Filters\FTF_RemoveShortWords(),
+            new Filters\RemoveShortWords(),
             array('1', '12', '123'),
             array('1234' => '1234', '12345' => '12345')
         );
     }
 
-    public function testFTF_RemoveTrailing()
+    public function testRemoveTrailing()
     {
         $this->assertFilterWorks(
-            new Filters\FTF_RemoveTrailingPunctuation(),
+            new Filters\RemoveTrailingPunctuation(),
             array(),
             array(
                 '1234' => '1234',
@@ -29,10 +29,10 @@ class FrequencyTableFiltersTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testFTF_RemoveUnwantedCharacters()
+    public function testRemoveUnwantedCharacters()
     {
         $this->assertFilterWorks(
-            new Filters\FTF_RemoveUnwantedCharacters(),
+            new Filters\RemoveUnwantedCharacters(),
             array(),
             array(
                 '12345' => '12345',
@@ -44,10 +44,10 @@ class FrequencyTableFiltersTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testFTF_RemoveUnwantedWords()
+    public function testRemoveUnwantedWords()
     {
         $this->assertFilterWorks(
-            new Filters\FTF_RemoveUnwantedWords(),
+            new Filters\RemoveUnwantedWords(),
             array(
                 'and', 'our', 'your', 'their', 'his', 'her', 'the',
                 'you', 'them', 'yours', 'with', 'such', 'even'

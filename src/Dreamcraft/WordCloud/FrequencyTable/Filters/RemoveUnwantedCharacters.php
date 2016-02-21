@@ -2,7 +2,7 @@
 
 namespace Dreamcraft\WordCloud\FrequencyTable\Filters;
 
-class FTF_RemoveUnwantedCharacters implements FrequencyTableFilterInterface
+class RemoveUnwantedCharacters implements FrequencyTableFilterInterface
 {
     protected $unwanted_characters;
 

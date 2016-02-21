@@ -26,10 +26,10 @@ class FrequencyTableFactory
     public static function getDefaultFrequencyTable($words = '')
     {
         $filters = array(
-            new Filters\FTF_RemoveShortWords(),
-            new Filters\FTF_RemoveTrailingPunctuation(),
-            new Filters\FTF_RemoveUnwantedCharacters(),
-            new Filters\FTF_RemoveTrailingPunctuation(),
+            new Filters\RemoveShortWords(),
+            new Filters\RemoveTrailingPunctuation(),
+            new Filters\RemoveUnwantedCharacters(),
+            new Filters\RemoveTrailingPunctuation(),
         );
         return self::getFrequencyTable($words, $filters);
     }

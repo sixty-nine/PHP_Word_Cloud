@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__.'/../lib/src/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Dreamcraft\WordCloud\Builder\WordCloudBuilder;
 use Dreamcraft\WordCloud\Renderer\WordCloudRenderer;
@@ -29,7 +29,7 @@ EOT;
 /**
  * The TrueType font to use
  */
-$font = __DIR__.'/../fonts/Paper_Cut.ttf';
+$font = __DIR__ . '/../fonts/Paper_Cut.ttf';
 
 /**
  * Dimensions of the resulting image
@@ -56,8 +56,8 @@ $builder = new WordCloudBuilder(
     $ft,
     BuilderContextFactory::getDefaultBuilderContext($ft, $palette, $font, $img_width, $img_height),
     array(
-         'font' => $font,
-         'size' => array($img_width, $img_height)
+        'font' => $font,
+        'size' => array($img_width, $img_height)
     )
 );
 $cloud = $builder->build(50);

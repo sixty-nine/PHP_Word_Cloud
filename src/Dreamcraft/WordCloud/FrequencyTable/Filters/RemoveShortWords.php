@@ -2,7 +2,7 @@
 
 namespace Dreamcraft\WordCloud\FrequencyTable\Filters;
 
-class FTF_RemoveShortWords implements FrequencyTableFilterInterface
+class RemoveShortWords implements FrequencyTableFilterInterface
 {
     protected $min_length;
 
