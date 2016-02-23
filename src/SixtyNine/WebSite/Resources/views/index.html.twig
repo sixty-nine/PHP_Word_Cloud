@@ -1,0 +1,24 @@
+<html>
+<head>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="controls">
+    {{ form_start(form) }}
+    {{ form_widget(form.url) }}
+    {{ form_widget(form.palette) }}
+    {{ form_widget(form.font) }}
+    {{ form_widget(form.orientation) }}
+    <input type="submit" value="Go"/>
+    {{ form_end(form) }}
+</div>
+<div class="word-cloud">
+    <img src="data:image/png;base64,{{ image }}"/>
+</div>
+</body>
+</html>
