@@ -8,6 +8,7 @@ use SixtyNine\WordCloud\Helper\Palette;
 use SixtyNine\WordCloud\FrequencyTable\FrequencyTableFactory;
 use SixtyNine\WordCloud\Builder\Context\BuilderContextFactory;
 use SixtyNine\WordCloud\ImageBuilder\RawImageRenderer;
+use Colors\RandomColor;
 
 
 /**
@@ -29,7 +30,7 @@ EOT;
 /**
  * The TrueType font to use
  */
-$font = __DIR__ . '/../fonts/Paper_Cut.ttf';
+$font = __DIR__ . '/../fonts/TheThreeStoogesFont.ttf';
 
 /**
  * Dimensions of the resulting image
@@ -41,8 +42,12 @@ $img_height = $_GET['h'];
 /**
  * The color palette to use
  */
-$palette = Palette::getPaletteFromHex(array('FFA700', 'FFDF00', 'FF4F00', 'FFEE73'));
-$palette = Palette::getNamedPalette('pastel');
+
+$colors = RandomColor::many(30, array(
+    'luminosity' => 'bright',
+    'hue' => array('purple'),
+));
+$palette = Palette::getPaletteFromHex($colors);
 
 /**
  * Create a frequency table from the text
