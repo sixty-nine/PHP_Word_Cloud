@@ -109,9 +109,9 @@ class HomeController
                 'size' => array($img_width, $img_height)
             )
         );
-
+//die(var_dump($builder->build(50, $data['orientation'])->getWords()));
         $imgRenderer = new RawImageRenderer(
-            $builder->build(50, null, $data['orientation']),
+            $builder->build(50, $data['orientation']),
             new WordCloudRenderer()
         );
 

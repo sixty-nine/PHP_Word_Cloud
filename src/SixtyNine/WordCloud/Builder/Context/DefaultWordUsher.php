@@ -30,7 +30,7 @@ class DefaultWordUsher extends WordUsher
         return $this->mask;
     }
 
-    public function searchPlace($word, $angle, $box)
+    public function getPlace($word, $angle, $box)
     {
         // Set the center so that vertical words are better distributed
         if ($angle == 0) {
@@ -41,8 +41,33 @@ class DefaultWordUsher extends WordUsher
             $cy = $this->imgHeight / 2 - rand(-$this->imgHeight / 10, $this->imgHeight / 10);
         }
 
-        $coord = $this->mask->searchPlace($cx, $cy, $box);
+        $coord = $this->searchPlace($cx, $cy, $box);
         $this->mask->add(new Box($coord[0], $coord[1], $box));
         return $coord;
+    }
+
+    /**
+     * Search a free place for a new box.
+     *
+     * @param float $ox The x coordinate of the starting search point
+     * @param float $oy The y coordinate of the starting search point
+     * @param array $box The 8 coordinates of the new box
+     * @return array The x and y coordinates for the new box
+     */
+    protected function searchPlace($ox, $oy, $box)
+    {
+        $place_found = false;
+        $i = 0;
+        $x = $ox;
+        $y = $oy;
+        while (!$place_found) {
+            $x = $x + ($i / 2 * cos($i));
+            $y = $y + ($i / 2 * sin($i));
+            $new_box = new Box($x, $y, $box);
+            // TODO: Check if the new coord is in the clip area
+            $place_found = !$this->mask->overlaps($new_box);
+            $i += 1;
+        }
+        return array($x, $y);
     }
 }

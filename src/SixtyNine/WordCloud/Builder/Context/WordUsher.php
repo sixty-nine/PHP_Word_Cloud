@@ -14,6 +14,6 @@ abstract class WordUsher
         $this->padding = $padding;
     }
 
-    public abstract function searchPlace($word, $angle, $box);
+    public abstract function getPlace($word, $angle, $box);
     public abstract function getMask();
 }

@@ -77,7 +77,7 @@ class WordCloudBuilder
             if (rand(1, 10) <= $orientation) $word->angle = 90;
 
             // Calculate the bounding box of the text
-            $word->text_box = imagettfbbox(
+            $word->textBox = imagettfbbox(
                 $word->size * $paddingSize,
                 $word->angle - $paddingAngle,
                 $this->cloud->getFont(),
@@ -88,24 +88,9 @@ class WordCloudBuilder
             $word->color = $this->context->getColorChooser()->getNextColor();
 
             // Search a place for the word
-            $coord = $this->context->getWordUsher()->searchPlace($text, $word->angle, $word->text_box);
+            $coord = $this->context->getWordUsher()->getPlace($text, $word->angle, $word->textBox);
             $word->x = $coord[0];
             $word->y = $coord[1];
-
-//            if ($word->angle == 0) {
-//                $cx = $this->cloud->getImageWidth() / 3;
-//                $cy = $this->cloud->getImageHeight() / 2;
-//            }
-//            else {
-//                $cx = $this->cloud->getImageWidth() / 3 + rand(0, $this->cloud->getImageWidth() / 10);
-//                $cy = $this->cloud->getImageHeight() / 2 + rand(-$this->cloud->getImageHeight() / 10, $this->cloud->getImageHeight() / 10);
-//            }
-//
-//            list($cx, $cy) = $this->cloud->getMask()->searchPlace($cx, $cy, $word->textBox);
-//            $word->x = $cx;
-//            $word->y = $cy;
-//
-//            $this->cloud->getMask()->add(new Box($cx, $cy, $word->textBox));
 
             $counter++;
         }
