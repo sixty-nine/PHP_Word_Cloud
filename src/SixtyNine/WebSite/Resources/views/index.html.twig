@@ -1,24 +1,30 @@
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 <html>
 <head>
+    <link rel="stylesheet" href="/resources/twbs/css/bootstrap.min.css" />
     <style>
         body {
             background-color: black;
-            color: white;
+        }
+        .controls {
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
-<div class="controls">
-    {{ form_start(form) }}
-    {{ form_widget(form.url) }}
-    {{ form_widget(form.palette) }}
-    {{ form_widget(form.font) }}
-    {{ form_widget(form.orientation) }}
-    <input type="submit" value="Go"/>
-    {{ form_end(form) }}
-</div>
-<div class="word-cloud">
-    <img src="data:image/png;base64,{{ image }}"/>
+<div class="container">
+    <div class="controls">
+        {{ form_start(form, { 'attr': {'class': 'form-inline'} }) }}
+        {{ form_widget(form.url) }}
+        {{ form_widget(form.palette) }}
+        {{ form_widget(form.font) }}
+        {{ form_widget(form.orientation) }}
+        <input type="submit" class="form-control" value="Go"/>
+        {{ form_end(form) }}
+    </div>
+    <div class="word-cloud">
+        <img src="data:image/png;base64,{{ image }}"/>
+    </div>
 </div>
 </body>
 </html>
