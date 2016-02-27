@@ -4,14 +4,14 @@ namespace SixtyNine\WordCloud\FrequencyTable\Filters;
 
 class RemoveUnwantedWords implements FrequencyTableFilterInterface
 {
-    protected $unwanted_words;
+    protected $unwantedWords;
 
-    public function __construct($unwanted_words = array(
+    public function __construct($unwantedWords = array(
         'and', 'our', 'your', 'their', 'his', 'her', 'the', 'you', 'them', 'yours',
         'with', 'such', 'even')
     )
     {
-        $this->unwanted_words = $unwanted_words;
+        $this->unwantedWords = $unwantedWords;
     }
 
     /**
@@ -19,7 +19,7 @@ class RemoveUnwantedWords implements FrequencyTableFilterInterface
      */
     public function filterWord($word)
     {
-        if (in_array($word, $this->unwanted_words))  {
+        if (in_array($word, $this->unwantedWords))  {
             return false;
         }
         return $word;

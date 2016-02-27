@@ -6,6 +6,14 @@ use SixtyNine\WordCloud\FrequencyTable\FrequencyTable;
 
 class BuilderContextFactory
 {
+    /**
+     * @param FrequencyTable $table
+     * @param $palette
+     * @param $font
+     * @param $img_width
+     * @param $img_height
+     * @return BuilderContext
+     */
     public static function getDefaultBuilderContext(FrequencyTable $table, $palette, $font, $img_width, $img_height)
     {
         $context = new BuilderContext();

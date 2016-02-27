@@ -41,11 +41,17 @@ class BuilderContext
         return $this->fontSizeCalculator;
     }
 
+    /**
+     * @return ColorChooser
+     */
     public function getColorChooser()
     {
         return $this->colorChooser;
     }
 
+    /**
+     * @return WordUsher
+     */
     public function getWordUsher()
     {
         return $this->wordUsher;

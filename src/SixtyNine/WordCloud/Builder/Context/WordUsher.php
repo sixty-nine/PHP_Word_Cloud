@@ -15,4 +15,5 @@ abstract class WordUsher
     }
 
     public abstract function searchPlace($word, $angle, $box);
+    public abstract function getMask();
 }

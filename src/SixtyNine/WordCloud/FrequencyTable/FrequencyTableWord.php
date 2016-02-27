@@ -10,10 +10,10 @@ class FrequencyTableWord
 
     public $count;
 
-    public function __construct($word, $title = null, $use_word_as_title = false)
+    public function __construct($word, $title = null, $useWordAsTitle = false)
     {
         $this->word = $word;
-        if ($use_word_as_title) {
+        if ($useWordAsTitle) {
             $title = $word;
         }
         $this->title = $title;

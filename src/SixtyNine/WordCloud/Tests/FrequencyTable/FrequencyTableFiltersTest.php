@@ -58,7 +58,7 @@ class FrequencyTableFiltersTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Generic FrequencyTableFilterInterface testing function.
-     * @param \SixtyNine\WordCloud\FrequencyTable\FrequencyTableFilterInterface $filter An instance of the filter to test
+     * @param \SixtyNine\WordCloud\FrequencyTable\Filters\FrequencyTableFilterInterface $filter An instance of the filter to test
      * @param array $rejected_words An array of words that should be rejected
      * @param array $accepted_words An associative array which key are the word to filter and the value is the expected result
      * @return void

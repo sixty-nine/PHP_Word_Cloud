@@ -4,7 +4,6 @@ namespace SixtyNine\WordCloud\Builder;
 
 use SixtyNine\WordCloud\FrequencyTable\FrequencyTable,
     SixtyNine\WordCloud\WordCloud,
-    SixtyNine\WordCloud\Box,
     SixtyNine\WordCloud\Builder\Context\BuilderContext;
 
 class WordCloudBuilder
@@ -15,7 +14,7 @@ class WordCloudBuilder
     const WORDS_MAINLY_VERTICAL = 9;
     const WORDS_VERTICAL = 10;
 
-    protected $frequency_table;
+    protected $frequencyTable;
 
     protected $cloud;
 
@@ -28,7 +27,7 @@ class WordCloudBuilder
         $this->checkConfigParameters($config);
         $this->config = $config;
         $this->context = $context;
-        $this->frequency_table = $table;
+        $this->frequencyTable = $table;
         $this->cloud = new WordCloud($config['size'][0], $config['size'][1]);
         $this->cloud->setFont($config['font']);
     }
@@ -48,18 +47,18 @@ class WordCloudBuilder
     /**
      * @param int $limit The maximal number of words to show
      * @param int $orientation The orientation (see self::WORDS_* constants)
-     * @param float $padding_size
-     * @param int $padding_angle
+     * @param float $paddingSize
+     * @param int $paddingAngle
      * @return \SixtyNine\WordCloud\WordCloud
      */
     public function build(
         $limit = null,
         $orientation = self::WORDS_MIXED,
-        $padding_size = 1.05,
-        $padding_angle = 0
+        $paddingSize = 1.05,
+        $paddingAngle = 0
     )
     {
-        $table = $this->frequency_table->getTable($limit);
+        $table = $this->frequencyTable->getTable($limit);
 
         $counter = 0;
 
@@ -79,8 +78,8 @@ class WordCloudBuilder
 
             // Calculate the bounding box of the text
             $word->text_box = imagettfbbox(
-                $word->size * $padding_size,
-                $word->angle - $padding_angle,
+                $word->size * $paddingSize,
+                $word->angle - $paddingAngle,
                 $this->cloud->getFont(),
                 $text
             );
@@ -102,11 +101,11 @@ class WordCloudBuilder
 //                $cy = $this->cloud->getImageHeight() / 2 + rand(-$this->cloud->getImageHeight() / 10, $this->cloud->getImageHeight() / 10);
 //            }
 //
-//            list($cx, $cy) = $this->cloud->getMask()->searchPlace($cx, $cy, $word->text_box);
+//            list($cx, $cy) = $this->cloud->getMask()->searchPlace($cx, $cy, $word->textBox);
 //            $word->x = $cx;
 //            $word->y = $cy;
 //
-//            $this->cloud->getMask()->add(new Box($cx, $cy, $word->text_box));
+//            $this->cloud->getMask()->add(new Box($cx, $cy, $word->textBox));
 
             $counter++;
         }

@@ -46,13 +46,5 @@ class Box {
 
     return true;
   }
-
-  /**
-   * Return a string representing the HTML imagemap coords of the rect
-   * @return string
-   */
-  public function getMapCoords() {
-    return "{$this->left},{$this->top},{$this->right},{$this->bottom}";
-  }
 }
 

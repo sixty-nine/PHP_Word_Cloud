@@ -4,11 +4,11 @@ namespace SixtyNine\WordCloud\FrequencyTable\Filters;
 
 class RemoveUnwantedCharacters implements FrequencyTableFilterInterface
 {
-    protected $unwanted_characters;
+    protected $unwantedCharacters;
 
-    public function __construct($unwanted_characters = array('?', '!', '\'', '"', '(', ')'))
+    public function __construct($unwantedCharacters = array('?', '!', '\'', '"', '(', ')'))
     {
-        $this->unwanted_characters = $unwanted_characters;
+        $this->unwantedCharacters = $unwantedCharacters;
     }
 
     /**
@@ -16,7 +16,7 @@ class RemoveUnwantedCharacters implements FrequencyTableFilterInterface
      */
     public function filterWord($word)
     {
-        foreach($this->unwanted_characters as $p) {
+        foreach($this->unwantedCharacters as $p) {
           $word = str_replace($p, '', $word);
         }
         return $word;

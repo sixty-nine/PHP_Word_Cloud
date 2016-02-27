@@ -4,11 +4,11 @@ namespace SixtyNine\WordCloud\FrequencyTable\Filters;
 
 class RemoveShortWords implements FrequencyTableFilterInterface
 {
-    protected $min_length;
+    protected $minLength;
 
-    public function __construct($min_length = 3)
+    public function __construct($minLength = 3)
     {
-        $this->min_length = $min_length;
+        $this->minLength = $minLength;
     }
 
     /**
@@ -16,7 +16,7 @@ class RemoveShortWords implements FrequencyTableFilterInterface
      */
     public function filterWord($word)
     {
-        if (strlen($word) <= $this->min_length)  {
+        if (strlen($word) <= $this->minLength)  {
             return false;
         }
         return $word;

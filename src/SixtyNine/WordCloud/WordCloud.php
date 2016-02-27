@@ -16,16 +16,16 @@ class WordCloud
 
     protected $mask;
 
-    protected $rendering_adjustment_x = 0;
+    protected $renderingAdjustmentX = 0;
 
-    protected $rendering_adjustment_y = 0;
+    protected $renderingAdjustmentY = 0;
     
 
-    public function __construct($image_width, $image_height, $background_color = array(0, 0, 0, 127))
+    public function __construct($imageWidth, $imageHeight, $backgroundColor = array(0, 0, 0, 127))
     {
-        $this->imageWidth = $image_width;
-        $this->imageHeight = $image_height;
-        $this->backgroundColor = $background_color;
+        $this->imageWidth = $imageWidth;
+        $this->imageHeight = $imageHeight;
+        $this->backgroundColor = $backgroundColor;
         $this->mask = new Mask();
     }
 
@@ -107,12 +107,12 @@ class WordCloud
     public function adjust($dx, $dy)
     {
         $this->getMask()->adjust($dx, $dy);
-        $this->rendering_adjustment_x = $dx;
-        $this->rendering_adjustment_y = $dy;
+        $this->renderingAdjustmentX = $dx;
+        $this->renderingAdjustmentY = $dy;
     }
 
     public function getRenderingAdjustment()
     {
-        return array($this->rendering_adjustment_x, $this->rendering_adjustment_y);
+        return array($this->renderingAdjustmentX, $this->renderingAdjustmentY);
     }
 }

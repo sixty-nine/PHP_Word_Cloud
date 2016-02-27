@@ -18,7 +18,7 @@ class Word
 
     public $color = 'FFFFFF';
 
-    public $text_box = null;
+    public $textBox = null;
 
-    public $bounding_box = null;
+    public $boundingBox = null;
 }

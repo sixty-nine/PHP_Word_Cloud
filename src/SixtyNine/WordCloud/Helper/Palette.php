@@ -34,15 +34,15 @@ class Palette
 
     /**
      * Construct a color palette from a list of hexadecimal colors (RRGGBB)
-     * @param array $hex_array An array of hexadecimal color strings
+     * @param array $hexArray An array of hexadecimal color strings
      * @throws \Exception
      * @return array
      */
-    public static function getPaletteFromHex($hex_array)
+    public static function getPaletteFromHex($hexArray)
     {
         $palette = array();
 
-        foreach ($hex_array as $hex) {
+        foreach ($hexArray as $hex) {
             if (substr($hex, 0, 1) === '#') {
                 $hex = substr($hex, 1);
             }
