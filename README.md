@@ -1,6 +1,7 @@
-# Wordle-like clickable cloud of words in PHP
+This package is deprecated, please use https://github.com/sixty-nine/php-cloud-lib
 
-This package is deprecated, please see https://github.com/sixty-nine/php-cloud-lib
+
+# Wordle-like clickable cloud of words in PHP
 
 ## About
 
